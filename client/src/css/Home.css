@@ -1,0 +1,201 @@
+.header {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 0, 0, 0);
+    height: 10vh;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.header p {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 30px;
+    cursor: default;
+}
+
+.titleMobileDrive {
+    display: none;
+}
+
+.header div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-file-label {
+    font-size: 16px;
+    background-color: rgb(103, 103, 103);
+    color: white;
+    display: flex;
+    height: fit-content;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+.custom-file-label:hover {
+    background-color: rgb(76, 76, 76);
+    cursor: pointer;
+}
+
+.mongoStream {
+    font-size: 16px;
+    background-color: rgb(103, 103, 103);
+    color: white;
+    display: flex;
+    height: fit-content;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+.mongoStream:hover {
+    background-color: rgb(76, 76, 76);
+    cursor: pointer;
+}
+
+.logOut {
+    font-size: 16px;
+    background-color: rgb(103, 103, 103);
+    color: white;
+    display: flex;
+    height: fit-content;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+.logOut:hover {
+    background-color: rgb(76, 76, 76);
+    cursor: pointer;
+}
+
+.uploading {
+    font-size: 16px;
+    background-color: rgb(212, 20, 20);
+    color: white;
+    display: flex;
+    height: fit-content;
+    text-align: center;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: 150px;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: default;
+}
+
+.uploaded {
+    font-size: 16px;
+    background-color: rgb(123, 34, 34);
+    color: white;
+    display: flex;
+    height: fit-content;
+    text-align: center;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: 150px;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: default;
+}
+
+.body {
+    height: 90vh;
+    width: 95vw;
+    background-color: #ffffff;
+    margin: auto;
+    border-radius: 10px;
+    transition: none;
+
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgb(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #909090;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+    margin: 20px;
+}
+
+@media only screen and (min-width: 350px) and (max-width: 500px) {
+    .header p {
+        font-size: 20px;
+    }
+
+    .titleDesktopDrive {
+        display: none;
+    }
+
+    .titleMobileDrive {
+        display: block;
+    }
+
+    .custom-file-label {
+        padding: 5px;
+    }
+
+    .mongoStream {
+        text-indent: -9999px;
+        line-height: 0;
+        padding: 5px;
+    }
+
+    .mongoStream::after {
+        content: "Stream";
+        text-indent: 0;
+        display: block;
+        line-height: initial;
+    }
+
+    .uploading {
+        padding: 5px;
+    }
+
+    .uploaded {
+        padding: 5px;
+    }
+
+    .logOut {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .header {
+        display: none;
+    }
+
+    .body {
+        display: none;
+    }
+}
