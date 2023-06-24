@@ -1,5 +1,6 @@
 const express = require("express");
 const userRoutes = require("./routes/userRoutes");
+const fileRoutes = require("./routes/fileRoutes");
 const fileUpload = require("express-fileupload");
 const app = express();
 require("dotenv").config();
@@ -15,6 +16,8 @@ app.use(function (req, res, next) {
   next();
 });
 app.use("/auth", userRoutes);
+app.use("/file", fileRoutes);
+
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on port ${process.env.PORT}`)
 );
