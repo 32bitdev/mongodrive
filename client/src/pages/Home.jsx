@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { uploadRoute, getFilesRoute, logoutRoute } from "../utils/APIRoutes";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import Files from "../components/Files";
 import "react-toastify/dist/ReactToastify.css";
 import "../css/Home.css";
 
@@ -140,6 +141,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="body">
+                <Files files={files} setFiles={setFiles} />
             </div>
             <ToastContainer style={{ backgroundColor: "rgba(0, 0, 0, 0)", overflow: "hidden" }} toastStyle={{ backgroundColor: "rgb(235, 235, 235)" }} newestOnTop />
         </>

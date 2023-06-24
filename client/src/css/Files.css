@@ -1,0 +1,220 @@
+.fileHeader {
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #909090;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: default;
+}
+
+.fileHeader .name {
+    font-weight: 500;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 15px;
+}
+
+.fileHeader .uploadedOn {
+    font-weight: 500;
+    width: 15%;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 15px;
+}
+
+.fileHeader .fileSize {
+    font-weight: 500;
+    width: 35%;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 15px;
+}
+
+.fileContainer {
+    background-color: rgba(0, 0, 0, 0);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.file {
+    height: 50px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0);
+    align-items: center;
+    border-bottom: 1px solid #909090;
+    cursor: default;
+    overflow: hidden;
+}
+
+.title {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.size {
+    width: 15%;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 15px;
+}
+
+.uploadedDate {
+    width: 15%;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 15px;
+}
+
+.actions {
+    width: 20%;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.download {
+    width: fit-content;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+.trash {
+    width: fit-content;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+.download img {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.trash img {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.noFiles {
+    height: 90vh;
+    background-color: wrgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.cancel-delete-options {
+    background-color: #1b1b1b;
+    display: flex;
+    flex-direction: column;
+}
+
+.cancel {
+    font-size: 16px;
+    background-color: rgb(66, 133, 244);
+    color: white;
+    text-align: center;
+    margin: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+.cancel:hover {
+    background-color: rgb(37, 111, 249);
+    cursor: pointer;
+}
+
+.delete {
+    font-size: 16px;
+    background-color: rgb(244, 66, 66);
+    color: white;
+    text-align: center;
+    margin: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+.delete:hover {
+    background-color: rgb(213, 0, 0);
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 450px) and (max-width: 950px) {
+    .fileHeader .name {
+        width: 35%;
+    }
+    .fileHeader .fileSize {
+        width: 50%;
+    }
+    .uploadedOn {
+        display: none;
+    }
+    .uploadedDate {
+        display: none;
+    }
+    .title {
+        width: 35%;
+    }
+    .size {
+        width: 30%;
+    }
+    .actions {
+        width: 35%;
+    }
+}
+
+@media only screen and (min-width: 350px) and (max-width: 450px) {
+    .fileHeader .name {
+        width: 100%;
+    }
+    .fileHeader .fileSize {
+        display: none;
+    }
+    .uploadedOn {
+        display: none;
+    }
+    .uploadedDate {
+        display: none;
+    }
+    .title {
+        width: 65%;
+    }
+    .size {
+        display: none;
+    }
+    .actions {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .fileHeader {
+        display: none;
+    }
+    .body {
+        display: none;
+    }
+}
