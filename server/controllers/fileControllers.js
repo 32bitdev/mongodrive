@@ -51,6 +51,20 @@ module.exports.getFiles = async (req, res, next) => {
     }
 };
 
+//get videos
+module.exports.getVideos = async (req, res, next) => {
+    try {
+        const { _id } = req.body;
+        const videos = await FileDetails.find({ $and: [{ owner: _id }, { fileType: "video/mp4" }] }).toArray();
+        const user = await Users.findOne({ _id: new ObjectId(_id) });
+        if (!(user))
+            return res.status(500).json({ status: false, msg: "User not found" });
+        return res.status(200).json({ status: true, videos: videos, activeStreamsCount: user.activeStreamsCount });
+    } catch (ex) {
+        next(ex);
+    }
+};
+
 //delete files
 module.exports.deleteFile = async (req, res, next) => {
     try {
