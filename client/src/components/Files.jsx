@@ -37,6 +37,26 @@ export default function Files({ files, setFiles }) {
         }
         fetchData();
     }, []);
+    const deleteFile = async (fileId) => {
+        const user = await JSON.parse(localStorage.getItem(process.env.MONGODRIVE_APP_LOCALHOST_KEY));
+        try {
+            const { data } = await axios.post(`${deleteRoute}`, { _id: user._id, fileId: fileId });
+            if (data.status === true) {
+                if (!toast.isActive(toastId.current))
+                    toastId.current = toast.success("File Deleted", toastOptions);
+                try {
+                    const { data } = await axios.post(`${getFilesRoute}`, { _id: user._id });
+                    if (data.status === true) {
+                        setFiles(data.files);
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <>
             {(showContent) ?
@@ -72,7 +92,7 @@ export default function Files({ files, setFiles }) {
                                                                     </div>
                                                                     <div>
                                                                         <button className="cancel">Cancel</button>
-                                                                        <button className="delete" onClick={() => { }}>Delete</button>
+                                                                        <button className="delete" onClick={() => deleteFile(file.fileId)}>Delete</button>
                                                                     </div>
                                                                 </div>
                                                                 ,
