@@ -50,3 +50,26 @@ module.exports.getFiles = async (req, res, next) => {
         next(ex);
     }
 };
+
+//delete files
+module.exports.deleteFile = async (req, res, next) => {
+    try {
+        const { _id, fileId } = req.body;
+        const user = await Users.findOne({ _id: new ObjectId(_id) });
+        if (!(user))
+            return res.status(500).json({ status: false, msg: "User not found" });
+        const file = await FileDetails.findOne({ fileId: fileId });
+        if (!(_id === file.owner))
+            return res.status(500).json({ status: false, msg: "Access Denied" });
+        const fileInfo = await FileBucket.find({ filename: fileId }).map(function (fileInfo) { return fileInfo }).toArray();
+        await FileBucket.delete(fileInfo[0]._id);
+        await FileDetails.deleteOne({ fileId: fileId });
+        let newFileCount = user.fileCount - 1;
+        const update = await Users.updateOne({ _id: new ObjectId(_id) }, { $set: { fileCount: newFileCount } });
+        if (!update.acknowledged)
+            return res.status(500).json({ status: false, msg: "Something went wrong" });
+        return res.json({ status: true, msg: "File Deleted" });
+    } catch (ex) {
+        next(ex);
+    }
+};
