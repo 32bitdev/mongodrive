@@ -143,3 +143,36 @@ module.exports.streamAction = async (req, res, next) => {
         next(ex);
     }
 };
+
+//stream end point
+module.exports.stream = async (req, res, next) => {
+    try {
+        const streamId = req.params.streamId;
+        const file = await FileDetails.findOne({ streamId: streamId });
+        if (!(file))
+            return res.status(500).json({ status: false, msg: "Stream link not valid" });
+        const range = req.headers.range;
+        if (!range)
+            res.status(400).send("Requires Range header");
+        else {
+            const videos = await FileBucket.find({ filename: file.fileId }).map(function (videos) { return videos }).toArray();
+            if (!videos)
+                res.status(400).send("Video not found");
+            const videoSize = videos[0].length;
+            const start = 0;
+            const end = videoSize - 1;
+            const contentLength = end - start + 1;
+            const headers = {
+                "Content-Range": `bytes ${start}-${end}/${videoSize}`,
+                "Accept-Ranges": "bytes",
+                "Content-Length": contentLength,
+                "Content-Type": "video/mp4",
+            };
+            res.writeHead(206, headers);
+            FileBucket.openDownloadStreamByName(file.fileId, { start }).pipe(res);
+        }
+    }
+    catch (ex) {
+        next(ex);
+    }
+};
