@@ -40,6 +40,25 @@ module.exports.upload = async (req, res, next) => {
     }
 };
 
+//download request handler
+module.exports.download = async (req, res, next) => {
+    try {
+        const { _id, fileId } = req.body;
+        const user = await Users.findOne({ _id: new ObjectId(_id) });
+        if (!(user))
+            return res.status(500).json({ status: false, msg: "User not found" });
+        const file = await FileDetails.findOne({ fileId: fileId });
+        if (!(_id === file.owner))
+            return res.status(500).json({ status: false, msg: "Access Denied" });
+        const fileName = file.fileName;
+        res.header('Content-Disposition', `attachment; filename="${fileName}"`);
+        res.status(200);
+        FileBucket.openDownloadStreamByName(fileId).pipe(res);
+    } catch (ex) {
+        next(ex);
+    }
+};
+
 //get files
 module.exports.getFiles = async (req, res, next) => {
     try {
