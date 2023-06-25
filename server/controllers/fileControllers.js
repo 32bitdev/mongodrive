@@ -106,3 +106,40 @@ module.exports.deleteFile = async (req, res, next) => {
         next(ex);
     }
 };
+
+//stream actions
+module.exports.streamAction = async (req, res, next) => {
+    try {
+        const { _id, fileId, state } = req.body;
+        const user = await Users.findOne({ _id: new ObjectId(_id) });
+        if (!(user))
+            return res.status(500).json({ status: false, msg: "User not found" });
+        const file = await FileDetails.findOne({ fileId: fileId });
+        if (!(_id === file.owner))
+            return res.status(500).json({ status: false, msg: "Access Denied" });
+        if (state) {
+            const newActiveStreamsCount = user.activeStreamsCount + 1;
+            const update = await FileDetails.updateOne({ fileId: fileId }, { $set: { streamActive: state, streamId: randomUUID() } });
+            if (!update.acknowledged)
+                return res.status(500).json({ status: false, msg: "Something went wrong" });
+            const userUpdate = await Users.updateOne({ _id: new ObjectId(_id) }, { $set: { activeStreamsCount: newActiveStreamsCount } });
+            if (!(userUpdate.acknowledged))
+                return res.status(500).json({ status: false, msg: "Something went wrong" });
+            const videos = await FileDetails.find({ $and: [{ owner: _id }, { fileType: "video/mp4" }] }).toArray();
+            return res.status(200).json({ status: true, msg: "Stream action updated", videos: videos, activeStreamsCount: newActiveStreamsCount });
+        }
+        else {
+            const newActiveStreamsCount = user.activeStreamsCount - 1;
+            const update = await FileDetails.updateOne({ fileId: fileId }, { $set: { streamActive: state, streamId: "" } });
+            if (!update.acknowledged)
+                return res.status(500).json({ status: false, msg: "Something went wrong" });
+            const userUpdate = await Users.updateOne({ _id: new ObjectId(_id) }, { $set: { activeStreamsCount: newActiveStreamsCount } });
+            if (!(userUpdate.acknowledged))
+                return res.status(500).json({ status: false, msg: "Something went wrong" });
+            const videos = await FileDetails.find({ $and: [{ owner: _id }, { fileType: "video/mp4" }] }).toArray();
+            return res.status(200).json({ status: true, msg: "Stream action updated", videos: videos, activeStreamsCount: newActiveStreamsCount });
+        }
+    } catch (ex) {
+        next(ex);
+    }
+};
