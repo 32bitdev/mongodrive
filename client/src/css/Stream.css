@@ -1,0 +1,229 @@
+.header {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 0, 0, 0);
+    height: 10vh;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.header p {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 30px;
+    cursor: default;
+}
+
+.titleMobileStream {
+    display: none;
+}
+
+.backToDrive {
+    font-size: 16px;
+    background-color: rgb(103, 103, 103);
+    color: white;
+    display: flex;
+    height: fit-content;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+.backToDrive:hover {
+    background-color: rgb(76, 76, 76);
+    cursor: pointer;
+}
+
+.streamBody {
+    height: 90vh;
+    width: 95vw;
+    background-color: rgba(0, 0, 0, 0);
+    margin: auto;
+    transition: none;
+
+}
+
+.videoContainer {
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    flex-direction: column;
+}
+
+.cover {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.noVideos {
+    background-color: #ffffff;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.activeStreams {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.activeStreams p {
+    background-color: rgba(0, 0, 0, 0);
+    margin: 10px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.allVideos {
+    background-color: #ffffff;
+    border-radius: 10px;
+    min-height: 90vh;
+}
+
+.allVideos p {
+    background-color: rgba(0, 0, 0, 0);
+    margin: 10px;
+    font-weight: 500;
+}
+
+.video {
+    height: 50px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0);
+    align-items: center;
+    border-bottom: 1px solid #909090;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: default;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}
+
+.noFiles {
+    height: 90vh;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.videoTitle {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.create {
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    height: fit-content;
+    margin: 5px;
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+.create:hover {
+    color: #2e2e2e;
+    cursor: pointer;
+}
+
+.create img {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.copyLink {
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    height: fit-content;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+.copyLink:hover {
+    color: #2e2e2e;
+    cursor: pointer;
+}
+
+.copyLink img {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.close {
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    height: fit-content;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: fit-content;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+.close:hover {
+    color: rgb(71, 10, 10);
+    cursor: pointer;
+}
+
+.close img {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+@media only screen and (min-width: 350px) and (max-width: 500px) {
+    .header p {
+        font-size: 20px;
+    }
+
+    .titleDesktopStream {
+        display: none;
+    }
+
+    .titleMobileStream {
+        display: block;
+    }
+
+    .backToDrive {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .header {
+        display: none;
+    }
+
+    .streamBody {
+        display: none;
+    }
+}
