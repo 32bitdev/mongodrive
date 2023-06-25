@@ -37,6 +37,22 @@ export default function Files({ files, setFiles }) {
         }
         fetchData();
     }, []);
+    const downloadFile = async (fileId) => {
+        const user = await JSON.parse(localStorage.getItem(process.env.MONGODRIVE_APP_LOCALHOST_KEY));
+        try {
+            const res = await axios.post(`${downloadRoute}`, { _id: user._id, fileId: fileId }, { responseType: "blob" });
+            const contentDisposition = res.headers['content-disposition'];
+            const fileName = contentDisposition.split('"')[1];
+            const url = window.URL.createObjectURL(new Blob([res.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${fileName}`);
+            document.body.appendChild(link);
+            link.click();
+        } catch (err) {
+            console.log(err);
+        }
+    }
     const deleteFile = async (fileId) => {
         const user = await JSON.parse(localStorage.getItem(process.env.MONGODRIVE_APP_LOCALHOST_KEY));
         try {
@@ -82,7 +98,7 @@ export default function Files({ files, setFiles }) {
                                                                 : `${Math.round(((Math.round(((Math.round((file.fileSize * 0.001) * 100) / 100) * 0.001) * 100) / 100) * 0.001) * 100) / 100} GB`
                                                 }</div>
                                                 <div className="actions">
-                                                    <button onClick={() => { }} className="download" title="Download"><img src={download} alt="download" /></button>
+                                                    <button onClick={() => downloadFile(file.fileId)} className="download" title="Download"><img src={download} alt="download" /></button>
                                                     <button onClick={() => {
                                                         if (!toast.isActive(toastId.current)) {
                                                             toastId.current = toast.warning(
