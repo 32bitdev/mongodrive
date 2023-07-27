@@ -36,7 +36,7 @@ export default function Files({ files, setFiles }) {
             }
         }
         fetchData();
-    }, []);
+    }, []); // eslint-disable-line
     const downloadFile = async (fileId) => {
         const user = await JSON.parse(localStorage.getItem(process.env.MONGODRIVE_APP_LOCALHOST_KEY));
         try {
