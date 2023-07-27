@@ -79,7 +79,7 @@ export default function Home() {
                         document.getElementById("customFile").value = null;
                     }
                     else {
-                        console.log("error");
+                        console.log(err);
                         setUploadPercentage(0);
                         setFile("");
                         document.getElementById("customFile").value = null;
